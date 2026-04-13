@@ -175,12 +175,12 @@ export default function AboutPage() {
             <p className="text-[11px] text-[#D6D3D1]">
               Built by{" "}
               <a
-                href="https://taptx.space"
+                href="https://www.republicsquare.media/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#A8A29E] hover:text-[#78716C] transition-colors duration-150"
               >
-                TAP
+                Republic Square Media
               </a>{" "}
               for the Texas title insurance community.
             </p>
