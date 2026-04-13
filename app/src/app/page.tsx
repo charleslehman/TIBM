@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { ChatMessage } from "@/components/ChatMessage";
 import { StarterQuestions } from "@/components/StarterQuestions";
 import type { ChatMessage as ChatMessageType, ChatResponse } from "@/types";
@@ -81,13 +82,21 @@ export default function Home() {
   return (
     <div className="flex flex-col h-dvh bg-white">
       <header className="shrink-0 border-b border-gray-200 bg-white">
-        <div className="max-w-3xl mx-auto px-4 py-4">
-          <h1 className="text-lg font-semibold text-gray-900">
-            Texas Title Insurance Manual Assistant
-          </h1>
-          <p className="text-xs text-gray-500 mt-0.5">
-            TDI Basic Manual &middot; Statutes, Rules, Forms &amp; Procedures
-          </p>
+        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div>
+            <h1 className="text-lg font-semibold text-gray-900">
+              Texas Title Insurance Manual Assistant
+            </h1>
+            <p className="text-xs text-gray-500 mt-0.5">
+              TDI Basic Manual &middot; Statutes, Rules, Forms &amp; Procedures
+            </p>
+          </div>
+          <Link
+            href="/about"
+            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            About
+          </Link>
         </div>
       </header>
 
