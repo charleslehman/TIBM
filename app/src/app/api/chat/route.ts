@@ -5,6 +5,8 @@ import { searchChunks, logQuery } from "@/lib/supabase";
 import { SYSTEM_PROMPT, buildUserPrompt } from "@/lib/prompts";
 import type { ChatMessage, ChatRequest, ChunkResult } from "@/types";
 
+export const maxDuration = 30;
+
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
