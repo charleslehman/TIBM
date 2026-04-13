@@ -45,12 +45,9 @@ export default function Home() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
       const data: ChatResponse = await response.json();
-
       const assistantMessage: ChatMessageType = {
         role: "assistant",
         content: data.message,
@@ -80,42 +77,44 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-dvh bg-white">
-      <header className="shrink-0 border-b border-gray-200 bg-white">
-        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+    <div className="flex flex-col h-dvh bg-[#FAFAF9]">
+      {/* Header */}
+      <header className="shrink-0 bg-white border-b border-[#E7E5E4]">
+        <div className="max-w-3xl mx-auto px-5 py-3.5 flex items-center justify-between">
           <div>
-            <h1 className="text-lg font-semibold text-gray-900">
+            <h1 className="text-[15px] font-semibold text-[#1C1917] tracking-tight">
               Texas Title Insurance Manual Assistant
             </h1>
-            <p className="text-xs text-gray-500 mt-0.5">
+            <p className="text-[11px] text-[#A8A29E] mt-0.5 tracking-wide">
               TDI Basic Manual &middot; Statutes, Rules, Forms &amp; Procedures
             </p>
           </div>
           <Link
             href="/about"
-            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+            className="text-[12px] text-[#A8A29E] hover:text-[#78716C] transition-colors duration-150"
           >
             About
           </Link>
         </div>
       </header>
 
-      <main className="flex-1 overflow-y-auto">
-        <div className="max-w-3xl mx-auto px-4">
+      {/* Messages */}
+      <main className="flex-1 overflow-y-auto scrollbar-hide">
+        <div className="max-w-3xl mx-auto px-5">
           {messages.length === 0 ? (
             <StarterQuestions onSelect={sendMessage} />
           ) : (
-            <div className="py-6 space-y-6">
+            <div className="py-6 space-y-5">
               {messages.map((msg, i) => (
                 <ChatMessage key={i} message={msg} />
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="px-4 py-3 rounded-2xl bg-gray-100">
-                    <div className="flex gap-1.5">
-                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:0ms]" />
-                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:150ms]" />
-                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:300ms]" />
+                  <div className="px-5 py-4 rounded-xl bg-white border border-[#E7E5E4] shadow-[0_1px_3px_0_rgb(0_0_0/0.04)]">
+                    <div className="flex gap-1.5 items-center">
+                      <span className="w-1.5 h-1.5 bg-[#A8A29E] rounded-full animate-bounce [animation-delay:0ms]" />
+                      <span className="w-1.5 h-1.5 bg-[#A8A29E] rounded-full animate-bounce [animation-delay:150ms]" />
+                      <span className="w-1.5 h-1.5 bg-[#A8A29E] rounded-full animate-bounce [animation-delay:300ms]" />
                     </div>
                   </div>
                 </div>
@@ -126,8 +125,9 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="shrink-0 border-t border-gray-200 bg-white">
-        <div className="max-w-3xl mx-auto px-4 py-4">
+      {/* Input */}
+      <footer className="shrink-0 bg-white border-t border-[#E7E5E4]">
+        <div className="max-w-3xl mx-auto px-5 py-4">
           <div className="flex gap-3 items-end">
             <textarea
               ref={inputRef}
@@ -136,7 +136,7 @@ export default function Home() {
               onKeyDown={handleKeyDown}
               placeholder="Ask about the Texas Title Insurance Basic Manual..."
               rows={1}
-              className="flex-1 resize-none rounded-xl border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-400"
+              className="flex-1 resize-none rounded-xl border border-[#E7E5E4] bg-white px-4 py-3 text-[14px] text-[#1C1917] placeholder:text-[#A8A29E] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-all duration-150"
               style={{ maxHeight: "120px" }}
               onInput={(e) => {
                 const target = e.target as HTMLTextAreaElement;
@@ -148,27 +148,26 @@ export default function Home() {
             <button
               onClick={() => sendMessage(input)}
               disabled={!input.trim() || isLoading}
-              className="shrink-0 w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="shrink-0 w-10 h-10 rounded-xl bg-[#2563EB] text-white flex items-center justify-center hover:bg-[#1D4ED8] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-150 active:scale-[0.98]"
             >
               <svg
-                className="w-5 h-5"
+                className="w-4.5 h-4.5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                strokeWidth={2.5}
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
                   d="M12 19V5m0 0l-7 7m7-7l7 7"
                 />
               </svg>
             </button>
           </div>
-          <p className="text-[10px] text-gray-400 mt-2 text-center leading-tight">
-            This tool provides general information from the TDI Basic Manual. It
-            is not legal advice. Always consult your underwriter or legal counsel
-            for specific situations.
+          <p className="text-[10px] text-[#D6D3D1] mt-3 text-center leading-relaxed">
+            General information from the TDI Basic Manual. Not legal advice.
+            Consult your underwriter or counsel for specific situations.
           </p>
         </div>
       </footer>

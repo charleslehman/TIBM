@@ -24,29 +24,29 @@ export function SourcesPanel({ sources }: { sources: ChunkResult[] }) {
   if (!sources?.length) return null;
 
   return (
-    <div className="mt-3 border-t border-gray-100 pt-2">
+    <div className="mt-2 ml-1">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-700 transition-colors"
+        className="flex items-center gap-1.5 text-[11px] text-[#A8A29E] hover:text-[#78716C] transition-colors duration-150"
       >
         <svg
-          className={`w-3.5 h-3.5 transition-transform ${isOpen ? "rotate-90" : ""}`}
+          className={`w-3 h-3 transition-transform duration-200 ${isOpen ? "rotate-90" : ""}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
+          strokeWidth={2}
         >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={2}
             d="M9 5l7 7-7 7"
           />
         </svg>
         {sources.length} source{sources.length !== 1 ? "s" : ""} referenced
       </button>
       {isOpen && (
-        <div className="mt-2 space-y-2">
-          {sources.map((source, i) => {
+        <div className="mt-2 space-y-1.5 animate-[fadeIn_0.15s_ease-out]">
+          {sources.map((source) => {
             const url = getSourceUrl(source.metadata);
             const label = getSourceLabel(source.metadata);
             const score = Math.round(source.similarity * 100);
@@ -54,9 +54,9 @@ export function SourcesPanel({ sources }: { sources: ChunkResult[] }) {
             return (
               <div
                 key={source.id}
-                className="flex items-start gap-2 text-xs p-2 bg-gray-50 rounded"
+                className="flex items-start gap-2.5 text-[11px] px-3 py-2 bg-[#FAFAF9] border border-[#F5F5F4] rounded-lg"
               >
-                <span className="text-gray-400 font-mono shrink-0">
+                <span className="text-[#D6D3D1] font-mono tabular-nums shrink-0 mt-px">
                   {score}%
                 </span>
                 <div className="min-w-0">
@@ -65,14 +65,14 @@ export function SourcesPanel({ sources }: { sources: ChunkResult[] }) {
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-medium text-blue-600 hover:underline"
+                      className="font-medium text-[#2563EB] hover:text-[#1D4ED8] underline-offset-2 hover:underline transition-colors duration-150"
                     >
                       {label}
                     </a>
                   ) : (
-                    <span className="font-medium text-gray-700">{label}</span>
+                    <span className="font-medium text-[#44403C]">{label}</span>
                   )}
-                  <span className="text-gray-400 ml-2">
+                  <span className="text-[#D6D3D1] ml-2">
                     {source.metadata.section}
                   </span>
                 </div>
