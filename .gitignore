@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Env files
+.env
+.env*.local
+
+# Scraped data (regeneratable)
+scraper/output/
+
+# Next.js
+app/.next/
+app/out/
+
+# OS
+.DS_Store
+
+# Build
+*.tsbuildinfo

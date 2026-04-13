@@ -1,0 +1,17 @@
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+export async function generateQueryEmbedding(
+  query: string
+): Promise<number[]> {
+  const response = await openai.embeddings.create({
+    model: "text-embedding-3-small",
+    input: query,
+    dimensions: 1536,
+  });
+
+  return response.data[0].embedding;
+}
